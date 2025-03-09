@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:green_fit/data/services/gemini_service.dart';
 
-class HomePage2 extends StatefulWidget {
-  const HomePage2({super.key});
+class PruebasGemini extends StatefulWidget {
+  const PruebasGemini({super.key});
 
   @override
-  State<HomePage2> createState() => _HomePage2State();
+  State<PruebasGemini> createState() => _PruebasGeminiState();
 }
 
-class _HomePage2State extends State<HomePage2> {
+class _PruebasGeminiState extends State<PruebasGemini> {
   final TextEditingController _controller = TextEditingController();
   final GeminiService _geminiService = GeminiService();
   String _response = "";

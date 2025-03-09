@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:green_fit/data/services/openai_service.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class PruebasOpenAI extends StatefulWidget {
+  const PruebasOpenAI({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<PruebasOpenAI> createState() => _PruebasOpenAIState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _PruebasOpenAIState extends State<PruebasOpenAI> {
   final TextEditingController _controller = TextEditingController();
   final OpenAIService _openAIService = OpenAIService();
   String _response = "";

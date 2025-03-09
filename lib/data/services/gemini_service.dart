@@ -24,10 +24,10 @@ class GeminiService {
           ],
         },
       );
-      // print(response.data['candidates'][0]['content']['parts'][0]['text']);
+      // print(response.data);
       return response.data['candidates'][0]['content']['parts'][0]['text'];
     } catch (e) {
-      print("Error: $e");
+      // print("Error: $e");
       return null;
     }
   }

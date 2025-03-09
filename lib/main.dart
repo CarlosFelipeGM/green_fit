@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:green_fit/display/screens/home2.dart';
+import 'package:green_fit/core/configs/colores.dart';
+import 'package:green_fit/core/configs/parametros.dart';
+import 'package:green_fit/display/routes/routes.dart';
+import 'package:green_fit/display/screens/pagina_principal.dart';
+import 'package:green_fit/display/screens/pantalla_formulario_corporal.dart';
+// import 'package:green_fit/display/screens/pruebas_gemini.dart';
 
 void main() async {
   await dotenv.load();
@@ -12,15 +17,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return BlocProvider(
+    //   create: (_) => RutinaBloc(rutinaService: DeepseekService()),
+    //   child: MaterialApp(
+    //     debugShowCheckedModeBanner: false,
+    //     title: Parametros.tituloApp,
+    //     theme: ThemeData(
+    //       colorScheme: ColorScheme.fromSeed(seedColor: Colores.colorSemilla),
+    //       useMaterial3: true,
+    //     ),
+    //     home: PruebasDeepseek(),
+    //   ),
+    // );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Chat GPT Flutter',
+      title: Parametros.tituloApp,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colores.colorSemilla),
         useMaterial3: true,
       ),
-      // home: HomePage(),
-      home: HomePage2(),
+      routes: {
+        Routes.home: (_) => const PaginaPrincipal(),
+        Routes.formularioCorporal: (_) => const PantallaFormularioCorporal(),
+      },
+      // home: PruebasOpenAI(),
+      // home: PruebasGemini(),
     );
   }
 }
