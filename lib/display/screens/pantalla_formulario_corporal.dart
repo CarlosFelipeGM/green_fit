@@ -17,16 +17,17 @@ class PantallaFormularioCorporal extends StatefulWidget {
 
 class _PantallaFormularioCorporalState
     extends State<PantallaFormularioCorporal> {
-  String? _sexoSeleccionado;
+  String? _sexoSeleccionado = 'Hombre';
+  String _consulta = "";
+  bool? _checkDeportista = false;
+  bool _mostrarDeporte = false;
+
   final List<String> _listaSexo = ['Hombre', 'Mujer'];
 
-  final _formKey = GlobalKey<FormState>();
+  final _idForm = GlobalKey<FormState>();
   final _edadTextController = TextEditingController();
-  final _saludUnoTextController = TextEditingController();
-  final _saludDosTextController = TextEditingController();
-  final _saludTresTextController = TextEditingController();
-  final _saludCuatroTextController = TextEditingController();
-  final _saludCincoTextController = TextEditingController();
+  final _deporteTextController = TextEditingController();
+  final _problemaSaludTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _PantallaFormularioCorporalState
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Form(
-        key: _formKey,
+        key: _idForm,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -46,50 +47,100 @@ class _PantallaFormularioCorporalState
             children: [
               combo(),
               InputFormulario(
-                label: 'Edad',
+                label: 'Edad (en años)',
                 icono: Iconos.campoEdad,
+                numeroFilas: 1,
                 textInputType: TextInputType.number,
                 controller: _edadTextController,
                 validator: (valor) {
                   return ValidacionesData.validarNumeroEntero(valor);
                 },
               ),
+              CheckboxListTile(
+                checkColor: Colores.colorContraSemilla,
+                activeColor: Colores.colorSemilla,
+                value: _checkDeportista,
+                title: Text('Soy deportista calificado'),
+                onChanged: (val) {
+                  setState(() {
+                    _checkDeportista = val;
+                    val == true
+                        ? _mostrarDeporte = true
+                        : _mostrarDeporte = false;
+                  });
+                },
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              Visibility(
+                visible: _mostrarDeporte,
+                child: InputFormulario(
+                  label: 'Deporte que practico',
+                  icono: Icons.sports_baseball,
+                  numeroFilas: 1,
+                  textInputType: TextInputType.text,
+                  controller: _deporteTextController,
+                  validator: (valor) {
+                    if (_checkDeportista == true) {
+                      return ValidacionesData.validarCampoObligatorio(valor);
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+              ),
               Text('Problemas de salud (opcional):'),
               InputFormulario(
-                label: 'Primer problema de salud',
+                label: 'Padece algún problema de salud?',
                 icono: Iconos.campoProblemaSalud,
                 textInputType: TextInputType.text,
-                controller: _saludUnoTextController,
+                numeroFilas: 2,
+                controller: _problemaSaludTextController,
               ),
-              InputFormulario(
-                label: 'Segundo problema de salud',
-                icono: Iconos.campoProblemaSalud,
-                textInputType: TextInputType.text,
-                controller: _saludDosTextController,
-              ),
-              InputFormulario(
-                label: 'Tercer problema de salud',
-                icono: Iconos.campoProblemaSalud,
-                textInputType: TextInputType.text,
-                controller: _saludTresTextController,
-              ),
-              InputFormulario(
-                label: 'Cuarto problema de salud',
-                icono: Iconos.campoProblemaSalud,
-                textInputType: TextInputType.text,
-                controller: _saludCuatroTextController,
-              ),
-              InputFormulario(
-                label: 'Quinto problema de salud',
-                icono: Iconos.campoProblemaSalud,
-                textInputType: TextInputType.text,
-                controller: _saludCincoTextController,
+              ElevatedButton(
+                onPressed: () {
+                  final esValido = _idForm.currentState?.validate();
+                  if (esValido == true) {
+                    _consulta = generarConsulta();
+                  }
+                  print(_consulta);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colores.colorSemilla,
+                  foregroundColor: Colores.colorContraSemilla,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: Text('GENERAR RUTINA'),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String generarConsulta() {
+    _consulta = "Soy un";
+    (_sexoSeleccionado == 'Mujer')
+        ? _consulta += "a mujer"
+        : _consulta += " hombre de sexo masculino";
+    if (_edadTextController.text.isNotEmpty) {
+      // validar numero entero
+      _consulta += " de ${_edadTextController.text} años de edad";
+    }
+    if (_checkDeportista == true && _deporteTextController.text.isNotEmpty) {
+      _consulta +=
+          ", soy deportista calificado, practico ${_deporteTextController.text}";
+    }
+    if (_problemaSaludTextController.text.isNotEmpty) {
+      _consulta += ", tengo problemas de ${_problemaSaludTextController.text}";
+    }
+    _consulta += ". Que rutinas me sugieres seguir en un gimnasio?";
+    _consulta += " Dame el resultado en formato json";
+    return _consulta;
   }
 
   DropdownButtonFormField<String> combo() {
@@ -112,7 +163,6 @@ class _PantallaFormularioCorporalState
         prefixIcon: Icon(Iconos.campoSexo, color: Colores.colorSemilla),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       ),
-      hint: Text('Hombre o Mujer?'),
     );
   }
 }

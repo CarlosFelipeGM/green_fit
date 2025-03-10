@@ -4,6 +4,7 @@ import 'package:green_fit/core/configs/colores.dart';
 class InputFormulario extends StatelessWidget {
   final String label;
   final IconData icono;
+  final int numeroFilas;
   final TextEditingController? controller;
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
@@ -12,6 +13,7 @@ class InputFormulario extends StatelessWidget {
     super.key,
     required this.label,
     required this.icono,
+    required this.numeroFilas,
     this.controller,
     this.textInputType,
     this.validator,
@@ -20,6 +22,8 @@ class InputFormulario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: numeroFilas,
+      maxLines: numeroFilas,
       controller: controller,
       keyboardType: textInputType,
       validator: validator,
