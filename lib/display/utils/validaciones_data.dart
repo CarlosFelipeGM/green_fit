@@ -1,4 +1,4 @@
-import 'package:green_fit/core/configs/mensajes.dart';
+import 'package:green_fit/core/settings/mensajes.dart';
 
 class ValidacionesData {
   static String? validarCampoObligatorio(String? valor) {

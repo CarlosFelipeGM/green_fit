@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:green_fit/core/configs/colores.dart';
-import 'package:green_fit/core/configs/parametros.dart';
+import 'package:green_fit/core/settings/colores.dart';
+import 'package:green_fit/core/settings/parametros.dart';
 import 'package:green_fit/display/routes/routes.dart';
 import 'package:green_fit/display/screens/pagina_principal.dart';
 import 'package:green_fit/display/screens/pantalla_formulario_corporal.dart';

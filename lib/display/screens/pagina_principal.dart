@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_fit/core/configs/parametros.dart';
+import 'package:green_fit/core/settings/parametros.dart';
 import 'package:green_fit/display/components/tile_ir_pagina.dart';
 import 'package:green_fit/display/routes/routes.dart';
 

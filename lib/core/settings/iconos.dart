@@ -5,5 +5,7 @@ class Iconos {
   static const IconData dropDown = Icons.arrow_drop_down_circle;
   static const IconData campoSexo = Icons.accessibility_rounded;
   static const IconData campoEdad = Icons.watch_later;
+  static const IconData campoPartesDelCuerpo = Icons.balance;
+  static const IconData campoDeportes = Icons.sports_basketball_outlined;
   static const IconData campoProblemaSalud = Icons.emergency;
 }

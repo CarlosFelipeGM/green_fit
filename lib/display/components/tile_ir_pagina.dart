@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_fit/core/configs/iconos.dart';
+import 'package:green_fit/core/settings/iconos.dart';
 
 class TileIrPagina extends StatelessWidget {
   final String texto;

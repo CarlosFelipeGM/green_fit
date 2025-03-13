@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_fit/core/configs/colores.dart';
+import 'package:green_fit/core/settings/colores.dart';
 
 class InputFormulario extends StatelessWidget {
   final String label;
