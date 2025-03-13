@@ -8,4 +8,8 @@ class Iconos {
   static const IconData campoPartesDelCuerpo = Icons.balance;
   static const IconData campoDeportes = Icons.sports_basketball_outlined;
   static const IconData campoProblemaSalud = Icons.emergency;
+  static const IconData misRutinas = Icons.home_outlined;
+  static const IconData misRetos = Icons.business_center;
+  static const IconData misProgresos = Icons.article;
+  static const IconData miconfiguracion = Icons.settings;
 }

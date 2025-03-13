@@ -13,10 +13,13 @@ class _PruebasOpenAIState extends State<PruebasOpenAI> {
   final OpenAIService _openAIService = OpenAIService();
   String _response = "";
 
-  void _sendMessage() async {
-    String? result = await _openAIService.getChatResponse(_controller.text);
+  void _fetchConsulta() async {
+    final txtConsulta = _controller.text;
+    final response = await _openAIService.request(txtConsulta);
+    // print("Respuesta:");
+    // print(response);
     setState(() {
-      _response = result ?? "Error conectando con OpenIA";
+      _response = response ?? "Error conectando con OpenIAAA";
     });
   }
 
@@ -36,7 +39,7 @@ class _PruebasOpenAIState extends State<PruebasOpenAI> {
               decoration: InputDecoration(labelText: "Escriba su pregunta"),
             ),
             SizedBox(height: 10),
-            ElevatedButton(onPressed: _sendMessage, child: Text("ENVIAR")),
+            ElevatedButton(onPressed: _fetchConsulta, child: Text("ENVIAR")),
             SizedBox(height: 20),
             Text("Respuesta: $_response"),
           ],

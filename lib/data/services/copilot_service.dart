@@ -1,26 +1,25 @@
 import 'package:dio/dio.dart';
-import 'package:green_fit/core/configs/deepseek_config.dart';
-import 'package:green_fit/data/models/deepseek_model.dart';
+import 'package:green_fit/core/configs/copilot_config.dart';
 
-class DeepseekService {
+class CopilotService {
   final Dio _dio = Dio();
 
-  Future<DeepseekModel?> generateRoutine(String mensaje) async {
+  Future<dynamic> generarRutina(String mensaje) async {
     // print(mensaje);
     try {
       final response = await _dio.post(
-        ConfigDeepseek.baseUrl,
+        CopilotConfig.baseUrl,
         data: {'goal': mensaje},
         options: Options(
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': "Bearer ${ConfigDeepseek.apiKey}",
+            'Authorization': "Bearer ${CopilotConfig.apiKey}",
           },
         ),
       );
       // print(response.data);
       if (response.statusCode == 200) {
-        return DeepseekModel.fromJson(response.data);
+        return response.data;
       } else {
         throw Exception('Falla en el servicio de generar rutinas');
       }

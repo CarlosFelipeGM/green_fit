@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:green_fit/core/configs/config_gemini.dart';
+import 'package:green_fit/core/configs/gemini_config.dart';
 
 class GeminiService {
   final Dio _dio = Dio(

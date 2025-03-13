@@ -11,4 +11,9 @@ class Textos {
   static const String txtDeportePracticado = 'Deporte que practico';
   static const String txtProblemaSalud = 'Problemas de salud';
   static const String txtPadecimientoSalud = 'Padece algún problema de salud?';
+  // textos del menu
+  static const String txtMisRutinas = 'Mis rutinas';
+  static const String txtMisRetos = 'Mis retos';
+  static const String txtMisProgresos = 'Mis progresos';
+  static const String txtMiConfiguracion = 'Mi configuración';
 }
