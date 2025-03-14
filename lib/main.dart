@@ -1,7 +1,11 @@
 // import "package:green_fit/display/screens/menu2/my_menu.dart";
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:green_fit/main_app.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:green_fit/display/screens/add_routine_screen.dart';
+import 'package:green_fit/display/screens/routine_list_screen.dart';
+import 'package:green_fit/firebase_options.dart';
+// import 'package:green_fit/main_app.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:green_fit/core/settings/colores.dart';
 // import 'package:green_fit/core/settings/parametros.dart';
 // import 'package:green_fit/display/routes/routes.dart';
@@ -10,11 +14,26 @@ import 'package:green_fit/main_app.dart';
 // // import 'package:green_fit/display/screens/pruebas_openai.dart';
 // // import 'package:green_fit/display/screens/pruebas_gemini.dart';
 
-// void main() async {
-//   await dotenv.load();
-//   runApp(const MyApp());
-// }
+void main() async {
+  await dotenv.load();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MyApp());
+}
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Rutinas de Ejercicios',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: RoutineListScreen(),
+      routes: {'/add': (context) => AddRoutineScreen()},
+    );
+  }
+}
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
 
@@ -49,8 +68,3 @@ import 'package:green_fit/main_app.dart';
 //     );
 //   }
 // }
-
-// ignore_for_file: avoid_redundant_argument_values
-
-// void main() => runApp(const MyMenu());
-void main() => runApp(const MainApp());

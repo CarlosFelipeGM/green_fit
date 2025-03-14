@@ -27,6 +27,18 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
       appBar: AppBar(
         title: const Text(Parametros.tituloApp),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: <Widget>[
+          const Text('Carlos Gomez'),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
+        ],
+      ),
+      drawer: const Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[Text("Menu lateral")],
+          ),
+        ),
       ),
       body:
           <Widget>[
